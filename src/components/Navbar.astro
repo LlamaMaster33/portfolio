@@ -1,0 +1,46 @@
+---
+const Logo = "/Logo.png"
+---
+
+<nav class="navbar">
+    <img src={Logo} alt="Logo" class="Logo">
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/about">About Me</a></li>
+    </ul>
+</nav>
+
+<style scoped>
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #3a322d;
+        padding: 1rem 2rem;
+        border-bottom: 2px solid #3a322d;
+    }
+
+    .logo {
+        height: 48px;
+        object-fit: contain;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+        color: #F9F6EE
+    }
+
+</style>
