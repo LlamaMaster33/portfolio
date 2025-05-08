@@ -1,0 +1,19 @@
+/* Global Css File*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --color-rich-black: #101012;
+    --color-light-gray: #e0e0e0;
+    --color-charcoal: #222;
+    --color-coffee-brown: #3a322d;
+    --color-slate-gray: #444;
+    --color-accent-cyan: #8ecfff;
+    --color-accent-cyan-light: #dffdff;
+}
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--color-rich-black);
+    color: var(--color-light-gray);
+}

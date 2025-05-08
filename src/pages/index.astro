@@ -1,0 +1,108 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout>
+    <section class="hero-wrapper">
+        <div class="banner"></div>
+            <div class="banner-credit">Credit: <a href="https://svs.gsfc.nasa.gov/13510/#media_group_321209" target="_blank" rel="noopener noreferrer">NASA's Goddard Space Flight Center/Chris Smith (USRA)</a>
+            </div>
+        <div class="image-container">
+            <img src="/src/assets/Placeholder.png" alt="Placeholder" class="hero-image" />
+        </div>
+    </section>
+
+    <section class="content">
+        <p>Sample Text</p>
+    </section>
+
+    <style>
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .hero-wrapper {
+            margin: 0;
+            padding: 0;
+        }
+
+        .image-container {
+            position: absolute;
+            z-index: 2;
+            display: flex; /* Center the image horizontally */
+            justify-content: center;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for the image size */
+            align-items: center;
+            border: 2px dashed rgba(255, 255, 255, 0.5)
+        }
+
+        .hero-image {
+            width: 160px; /* Set a fixed width */
+            height: 160px; /* Match height to width to make it square */
+            object-fit: cover; /* Crop the image to fit the square */
+            object-position: center; /* Center the cropped area */
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            background: #111;
+            background-origin: 50%;
+        }
+
+        .banner {
+            position: relative;
+            display: block;
+            width: 95%;
+            max-height: 960px;
+            height: 400px;
+            background-image: url('/src/assets/Wolftopia.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+            margin-top: 0;
+            margin: 0 auto;
+        }
+
+        .banner-credit {
+            position: absolute;
+            margin-left: 2rem;
+            margin-top: .5rem;
+            font-size: 0.95rem;
+            color: #e0e0e0bd;
+            text-decoration: none;
+            background: rgba(20, 24, 36, 0.75); /* Subtle dark background */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            max-width: 90vw;
+            z-index: 3;
+            text-align: left;
+        }
+
+        .banner-credit a {
+            color: #8ffdff80;
+            text-decoration: underline;
+            transition: color .5s, text-decoration-thickness .5s;
+        }
+        .banner-credit a:hover {
+            color: #dffdff;
+            text-decoration-thickness: 2px;
+        }
+
+        .content {
+            padding: 2rem; /* Add padding for space */
+            background-color: #222; /* Optional: Different background color */
+            color: #fff; /* Optional: Text color */
+            text-align: center; /* Center the text */
+        }
+
+        @media (max-width: 640px) { 
+            .hero-image {
+                width: 120px; /* Adjust size for smaller screens */
+                height: 120px; /* Keep it square */
+            }
+        }
+    </style>
+</MainLayout>

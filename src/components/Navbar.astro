@@ -1,9 +1,9 @@
 ---
-const Logo = "/Logo.png"
+const Logo = "/src/assets/Logo.png"
 ---
 
 <nav class="navbar">
-    <img src={Logo} alt="Logo" class="Logo">
+    <img src={Logo} alt="Logo" class="logo">
     <ul class="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
@@ -17,13 +17,18 @@ const Logo = "/Logo.png"
         align-items: center;
         justify-content: space-between;
         background: #3a322d;
-        padding: 1rem 2rem;
-        border-bottom: 2px solid #3a322d;
+        padding: 0 2rem; /* Adjust padding to fit within 64px height */
+        height: 64px; /* Set the navbar height */
+        position: relative; /* Ensure the navbar is positioned */
+        z-index: 10; /* Higher z-index ensures it appears above other elements */
+        margin-bottom: 0; /* Ensure no gap below the navbar */
     }
 
     .logo {
-        height: 48px;
-        object-fit: contain;
+        height: 98px; /* Adjust the height as needed */
+        width: auto;  /* Set a fixed width */
+        object-fit: cover; /* Crops the image to fill the container */
+        object-position: center; /* Centers the cropped area */
     }
 
     .nav-links {
@@ -40,7 +45,6 @@ const Logo = "/Logo.png"
     }
 
     .nav-links a:hover {
-        color: #F9F6EE
+        color: #F9F6EE;
     }
-
 </style>
