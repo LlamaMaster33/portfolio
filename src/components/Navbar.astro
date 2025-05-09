@@ -1,10 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import Logo from "/src/assets/Logo.png"
+import LogoLinkFox from "/src/assets/Logo.svg"
 ---
 
 <nav class="navbar">
-    <Image src={Logo} class="logo" alt="Logo" loading="eager" />
+    <LogoLinkFox class="logo" />
     <ul class="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
@@ -27,9 +27,13 @@ import Logo from "/src/assets/Logo.png"
 
     .logo {
         height: 98px; /* Adjust the height as needed */
-        width: auto;  /* Set a fixed width */
-        object-fit: cover; /* Crops the image to fill the container */
-        object-position: center; /* Centers the cropped area */
+        width: auto;  /* Maintain aspect ratio */
+        color: var(--color-accent-primary); /* Controls the SVG color */
+        transition: color 0.3s ease; /* Smooth transition for color changes */
+    }
+
+    .logo:hover {
+        color: var(--color-accent-secondary); /* Change to a secondary color on hover */
     }
 
     .nav-links {

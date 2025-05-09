@@ -14,7 +14,7 @@ import '../styles/global.css';
         </section>
 
     <section class="content">
-        <div class-"card-grid">
+        <div class="card-grid">
             <div class="card">
                 <h2>Welcome to My Portfolio</h2>
                 <p>Explore my projects and learn more about me.</p>
@@ -78,20 +78,20 @@ import '../styles/global.css';
             height: 160px; /* Match height to width to make it square */
             object-fit: cover; /* Crop the image to fit the square */
             object-position: center; /* Center the cropped area */
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-            background: #111;
+            box-shadow: 0 6px 18px var(--color-box-shadow-soft); /* Soft shadow for depth */
+            background: var(--color-card-background);
             background-origin: 50%;
         }
 
         .banner-credit {
             position: absolute;
-            margin-left: 2rem;
+            margin-left: 3rem;
             margin-top: .5rem;
             font-size: 0.95rem;
-            color: var(--color-text-main);
+            color: var(--color-text-secondary);
             text-decoration: none;
-            background: rgba(20, 24, 36, 0.1); /* Subtle dark background */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: rgba(var(--color-background), 0.1); /* Subtle dark background */
+            box-shadow: 0 2px 8px var(--color-box-shadow);
             max-width: 90vw;
             z-index: 3;
             text-align: left;
@@ -103,19 +103,47 @@ import '../styles/global.css';
             transition: color .5s, text-decoration-thickness .5s;
         }
         .banner-credit a:hover {
-            color: #dffdff;
+            color: var(--color-text-link-hover);
             text-decoration-thickness: 2px;
         }
 
         .content {
             padding: 2rem; /* Add padding for space */
-            background-color: #3c3f40; /* Optional: Different background color */
-            color: #fff; /* Optional: Text color */
+            margin: 0 auto; /* Center the content */
+            width: 90%; /* Set a max width */
+            background-color: var(--color-footer-background); /* Optional: Different background color */
+            color: var(--color-text-main); /* Optional: Text color */
             text-align: center; /* Center the text */
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+            gap: 1rem; /* Add spacing between the cards */
+            padding: 1rem; /* Optional: Add padding around the grid */
+            justify-content: center; /* Center the grid */
+            justify-items: center; /* Center the cards in the grid */
+        }
+
+        .card {
+            background: var(--color-card-background); /* Var background for the card */
+            width: 50%;
+            border-radius: 8px; /* Rounded corners for a card-like feel */
+            box-shadow: 0 4px 8px var(--color-box-shadow-soft); /* Subtle shadow for depth */
+            padding: 1.5rem; /* Add padding inside the card */
+            text-align: left; /* Align text to the left */
+            color: var(--color-text-main); /* Dark text color */
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+            box-shadow: 0 6px 12px var(--color-box-shadow-hard); /* Stronger shadow on hover */
         }
 
         @media (max-width: 640px) { 
             .hero-image {
+                grid-template-columns: 1fr; /* Switch to a single column on smaller screens */
                 width: 120px; /* Adjust size for smaller screens */
                 height: 120px; /* Keep it square */
             }

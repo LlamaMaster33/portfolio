@@ -3,14 +3,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
+    /* Core Colors */
     --color-background: #121212;
     --color-card-background: #1E1E2E;
+    --color-navbar: #22272E; /* alt color : 3a322d */
     --color-accent-primary: #56B6C2;
     --color-accent-secondary: #C678DD;
+    /* Text Hierarchy */
     --color-text-main: #E0E0E0;
+    --color-text-secondary: #A0A0A0;
+    --color-muted-disabled: #777777;
+    --color-text-link-hover: #80CEDB;
     --color-code-snippets: #98C379;
+    /* UI/Box Colors */
     --color-border-line: #2D2D2D;
-    --color-navbar: #22272E; /* alt color : 3a322d */
+    --color-box-shadow-soft: rgba(0, 0, 0, 0.35);
+    --color-box-shadow-hard: rgba(0, 0, 0, 0.65);
+    --color-box-highlight: rgba(86, 182, 194, 0.2);
+    --color-cta-button: #2B9CB3;
+    --color-footer-background: #161B22;
 }
 
 body {
