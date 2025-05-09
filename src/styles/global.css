@@ -3,17 +3,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-    --color-rich-black: #101012;
-    --color-light-gray: #e0e0e0;
-    --color-charcoal: #222;
-    --color-coffee-brown: #3a322d;
-    --color-slate-gray: #444;
-    --color-accent-cyan: #8ecfff;
-    --color-accent-cyan-light: #dffdff;
+    --color-background: #121212;
+    --color-card-background: #1E1E2E;
+    --color-accent-primary: #56B6C2;
+    --color-accent-secondary: #C678DD;
+    --color-text-main: #E0E0E0;
+    --color-code-snippets: #98C379;
+    --color-border-line: #2D2D2D;
+    --color-navbar: #22272E; /* alt color : 3a322d */
 }
 
 body {
     font-family: 'Inter', Arial, sans-serif;
-    background: var(--color-rich-black);
-    color: var(--color-light-gray);
+    background: var(--color-background);
+    color: var(--color-text-main);
 }

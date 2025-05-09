@@ -1,5 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import HeroImage from "../assets/Hero.png";
+import '../styles/global.css';
 ---
 
 <MainLayout>
@@ -7,13 +10,24 @@ import MainLayout from "../layouts/MainLayout.astro";
         <div class="banner"></div>
             <div class="banner-credit">Credit: <a href="https://svs.gsfc.nasa.gov/13510/#media_group_321209" target="_blank" rel="noopener noreferrer">NASA's Goddard Space Flight Center/Chris Smith (USRA)</a>
             </div>
-        <div class="image-container">
-            <img src="/src/assets/Placeholder.png" alt="Placeholder" class="hero-image" />
-        </div>
-    </section>
+        <Image src={HeroImage} class="image-container" alt="Placeholder" loading="eager" />
+        </section>
 
     <section class="content">
-        <p>Sample Text</p>
+        <div class-"card-grid">
+            <div class="card">
+                <h2>Welcome to My Portfolio</h2>
+                <p>Explore my projects and learn more about me.</p>
+            </div>
+            <div class="card">
+                <h2>Projects</h2>
+                <p>Check out my latest work and contributions.</p>
+            </div>
+            <div class="card">
+                <h2>About Me</h2>
+                <p>Learn more about my background and skills.</p>
+            </div>
+        </div>
     </section>
 
     <style>
@@ -26,20 +40,37 @@ import MainLayout from "../layouts/MainLayout.astro";
         }
 
         .hero-wrapper {
+            background-color: var(--color-background);
             margin: 0;
             padding: 0;
+            position: relative; /* Ensure the wrapper is the reference point */
+        }
+
+        .banner {
+            position: relative; /* Make the banner the reference point for positioning */
+            display: block;
+            width: 90%; /* Ensure the banner spans the full width */
+            height: 400px; /* Fixed height for consistency */
+            background-image: url('/src/assets/Wolftopia_Banner.png');
+            background-size: cover; /* Ensure the image covers the banner */
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+            margin: 0 auto; /* Center the banner */
         }
 
         .image-container {
-            position: absolute;
-            z-index: 2;
-            display: flex; /* Center the image horizontally */
-            justify-content: center;
+            position: absolute; /* Position relative to the banner */
             top: 50%; /* Center vertically */
             left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Adjust for the image size */
+            transform: translate(-50%, -50%); /* Adjust for the image's own dimensions */
+            z-index: 2; /* Ensure it appears above the banner */
+            display: flex;
+            justify-content: center;
             align-items: center;
-            border: 2px dashed rgba(255, 255, 255, 0.5)
+            border: 2px var(--color-accent-primary) dashed;
+            width: 160px; /* Match the size of the image */
+            height: 160px; /* Match the size of the image */
         }
 
         .hero-image {
@@ -52,37 +83,22 @@ import MainLayout from "../layouts/MainLayout.astro";
             background-origin: 50%;
         }
 
-        .banner {
-            position: relative;
-            display: block;
-            width: 95%;
-            max-height: 960px;
-            height: 400px;
-            background-image: url('/src/assets/Wolftopia.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: 1;
-            margin-top: 0;
-            margin: 0 auto;
-        }
-
         .banner-credit {
             position: absolute;
             margin-left: 2rem;
             margin-top: .5rem;
             font-size: 0.95rem;
-            color: #e0e0e0bd;
+            color: var(--color-text-main);
             text-decoration: none;
-            background: rgba(20, 24, 36, 0.75); /* Subtle dark background */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            background: rgba(20, 24, 36, 0.1); /* Subtle dark background */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             max-width: 90vw;
             z-index: 3;
             text-align: left;
         }
 
         .banner-credit a {
-            color: #8ffdff80;
+            color: var(--color-accent-primary);
             text-decoration: underline;
             transition: color .5s, text-decoration-thickness .5s;
         }
@@ -93,7 +109,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
         .content {
             padding: 2rem; /* Add padding for space */
-            background-color: #222; /* Optional: Different background color */
+            background-color: #3c3f40; /* Optional: Different background color */
             color: #fff; /* Optional: Text color */
             text-align: center; /* Center the text */
         }

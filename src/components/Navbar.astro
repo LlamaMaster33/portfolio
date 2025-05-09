@@ -1,9 +1,10 @@
 ---
-const Logo = "/src/assets/Logo.png"
+import { Image } from "astro:assets";
+import Logo from "/src/assets/Logo.png"
 ---
 
 <nav class="navbar">
-    <img src={Logo} alt="Logo" class="logo">
+    <Image src={Logo} class="logo" alt="Logo" loading="eager" />
     <ul class="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="/projects">Projects</a></li>
@@ -16,7 +17,7 @@ const Logo = "/src/assets/Logo.png"
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #3a322d;
+        background: var(--color-navbar);
         padding: 0 2rem; /* Adjust padding to fit within 64px height */
         height: 64px; /* Set the navbar height */
         position: relative; /* Ensure the navbar is positioned */
