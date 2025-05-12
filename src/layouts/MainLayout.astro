@@ -1,5 +1,7 @@
 ---
+// filepath: /workspaces/portfolio/src/layouts/MainLayout.astro
 import Navbar from "../components/Navbar.astro";
+import SmoothScroll from "../components/SmoothScroll.astro"; // Import SmoothScroll
 import '../styles/global.css';
 ---
 
@@ -18,6 +20,7 @@ import '../styles/global.css';
         </style>
     </head>
     <body>
+        <SmoothScroll /> <!-- Add SmoothScroll here -->
         <Navbar />
         <main>
             <slot />
