@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+import LogoLinkFox from "/src/assets/Logo.svg"
+---
+
+<nav class="navbar">
+    <LogoLinkFox class="logo" />
+    <ul class="nav-links">
+        <li><a href="/portfolio/">Home</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/about/">About Me</a></li>
+    </ul>
+</nav>
+
+<style scoped>
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--color-navbar);
+        padding: 0 2rem; /* Adjust padding to fit within 64px height */
+        height: 64px; /* Set the navbar height */
+        position: relative; /* Ensure the navbar is positioned */
+        z-index: 10; /* Higher z-index ensures it appears above other elements */
+        margin-bottom: 0; /* Ensure no gap below the navbar */
+    }
+
+    .logo {
+        height: 98px; /* Adjust the height as needed */
+        width: auto;  /* Maintain aspect ratio */
+        color: var(--color-accent-primary); /* Controls the SVG color */
+        transition: color 0.3s ease; /* Smooth transition for color changes */
+    }
+
+    .logo:hover {
+        color: var(--color-accent-secondary); /* Change to a secondary color on hover */
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: #ccc;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+        color: #F9F6EE;
+    }
+</style>

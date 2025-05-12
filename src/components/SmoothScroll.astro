@@ -1,0 +1,63 @@
+---
+// filepath: /workspaces/portfolio/src/components/SmoothScroll.astro
+// This component adds a smooth and continuous scrolling effect to all scrolling actions.
+---
+
+<script>
+    let isScrolling = false;
+    let scrollDelta = 0; // Accumulated scroll delta
+    let animationFrameId = null;
+
+    // Function to handle smooth scrolling
+    function smoothScroll() {
+        if (Math.abs(scrollDelta) < 1) {
+            // Stop the animation if the delta is too small
+            isScrolling = false;
+            cancelAnimationFrame(animationFrameId);
+            return;
+        }
+
+        const startPosition = window.scrollY;
+        const scrollAmount = scrollDelta * 0.1; // Scale down the delta for smoother motion
+        const targetPosition = startPosition + scrollAmount;
+
+        window.scrollTo(0, targetPosition);
+
+        // Gradually reduce the scroll delta for a smooth stop
+        scrollDelta *= 0.9;
+
+        // Continue the animation
+        animationFrameId = requestAnimationFrame(smoothScroll);
+    }
+
+    // Attach smooth scrolling to mouse wheel and touchpad scroll events
+    document.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("wheel", (e) => {
+            e.preventDefault(); // Prevent default scrolling behavior
+            scrollDelta += e.deltaY; // Accumulate the scroll delta
+
+            if (!isScrolling) {
+                isScrolling = true;
+                smoothScroll(); // Start the animation loop
+            }
+        }, { passive: false });
+
+        window.addEventListener("keydown", (e) => {
+            // Handle keyboard scrolling (e.g., arrow keys, spacebar)
+            if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
+                e.preventDefault();
+                scrollDelta += 50; // Add a fixed delta for keyboard scrolling
+            } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+                e.preventDefault();
+                scrollDelta -= 50; // Subtract a fixed delta for upward scrolling
+            }
+
+            if (!isScrolling) {
+                isScrolling = true;
+                smoothScroll(); // Start the animation loop
+            }
+        });
+    });
+</script>
+
+<!-- This component doesn't render anything -->

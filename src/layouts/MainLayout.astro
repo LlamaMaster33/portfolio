@@ -1,0 +1,29 @@
+---
+// filepath: /workspaces/portfolio/src/layouts/MainLayout.astro
+import Navbar from "../components/Navbar.astro";
+import SmoothScroll from "../components/SmoothScroll.astro"; // Import SmoothScroll
+import '../styles/global.css';
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio of Ronan Ludvigsen</title>
+        <icon rel="icon" src="assets/Logo.png" type="image/png" />
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: var(--color-background);
+                color: var(--color-text-main);
+            }
+        </style>
+    </head>
+    <body>
+        <SmoothScroll /> <!-- Add SmoothScroll here -->
+        <Navbar />
+        <main>
+            <slot />
+        </main>
+    </body>
+</html>
