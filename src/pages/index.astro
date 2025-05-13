@@ -16,143 +16,149 @@ import '../styles/global.css';
     <section class="content">
         <div class="card-grid">
             <div class="card">
-                <h2>Who are you?</h2>
-                <p>&nbsp&nbsp&nbsp&nbsp<b>I'm Ronan — a multidisciplinary developer and designer.</b> </br>I specialize in immersive digital experiences that mege function, storytelling, and aesthetic impact. My work bridges systems and emotion–shaped through clean code, visual atmosphere, and percision.</p>
+                <h2>Placeholder</h2>
+                <p>&nbsp&nbsp&nbsp&nbspSample Text</p>
             </div>
             <div class="card">
-                <h2>What do you do?</h2>
-                <p>&nbsp&nbsp&nbsp&nbsp<b>I build and design systems spanning: </b></br>- General Software Development: Writing scalable, clean code for web, game, and local–first aplications.</br>- Front-end Engineering: TypeScript, Astro, React, and responsive design.</br>- UI/UX Design: Interfaces that are intuitive, adaptive, and visually aligned to narative.</br>- Creative Tech: Blender animation, shader programming, and procedural content systems.</p>
+                <h2>Placeholder</h2>
+                <p>&nbsp&nbsp&nbsp&nbspSample Text</p>
             </div>
             <div class="card">
-                <h2>What makes your work distinct?</h2>
-                <p>&nbsp&nbsp&nbsp&nbsp<b>Cohesion between code and experience.</b></br>I devlop like an engineer and design like a director—ensuring that every function, frame, and flow serves a narrative purpose. I focus on structure, emotional continuity, and technical efficiency.</p>
+                <h2>Placeholder</h2>
+                <p>&nbsp&nbsp&nbsp&nbspSample Text</p>
             </div>
             <div class="card">
-                <h2>What technologies and tools do you use?</h2>
-                <p>&nbsp&nbsp&nbsp&nbsp<b>Primary Stack:</b></br>- TypeScript, Astro, React, Node</br>- Tailwind, SCSS, CSS Modules</br>- Blender, Krita, Affinity Designer</br>- Git, Figma, WebGL/Canvas</br>I prioritize tools that allow for precision, speed, and scalability across visual and functional domains.</p>
+                <h2>Placeholder</h2>
+                <p>&nbsp&nbsp&nbsp&nbspSample Text</p>
             </div>
         </div>
     </section>
 
     <style>
-        .hero {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 4rem;
-        }
+    .hero {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4rem;
+    }
 
-        .hero-wrapper {
-            background-color: var(--color-background);
-            margin: 0;
-            padding: 0;
-            position: relative; /* Ensure the wrapper is the reference point */
-        }
+    .hero-wrapper {
+        background-color: var(--color-background);
+        margin: 0;
+        padding: 0;
+        position: relative; /* Ensure the wrapper is the reference point */
+    }
 
-        .banner {
-            position: relative; /* Make the banner the reference point for positioning */
-            display: block;
-            width: 90%; /* Ensure the banner spans the full width */
-            height: 400px; /* Fixed height for consistency */
-            box-shadow: -6px 0 18px var(--color-box-shadow-soft), 6px 0 18px var(--color-box-shadow-hard); /* Shadow only on left and right */
-            background-image: url('/src/assets/Wolftopia_Banner.png');
-            background-size: cover; /* Ensure the image covers the banner */
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: 1;
-            margin: 0 auto; /* Center the banner */
-        }
+    .banner {
+        position: relative;
+        display: block;
+        width: 90%;
+        height: 400px;
+        box-shadow: -4px 0 12px var(--color-box-shadow-soft), 4px 0 12px var(--color-box-shadow-soft), 0 6px 16px var(--color-box-shadow-hard); /* Softer and more balanced shadow */
+        background-image: url('/src/assets/Wolftopia_Banner.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+        margin: 0 auto;
+        border-radius: 10px; /* Subtle rounding for a modern look */
+    }
 
-        .image-container {
-            position: absolute; /* Position relative to the banner */
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Adjust for the image's own dimensions */
-            z-index: 2; /* Ensure it appears above the banner */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px var(--color-accent-primary) dashed;
-            width: 160px; /* Match the size of the image */
-            height: 160px; /* Match the size of the image */
-        }
+    .image-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px var(--color-accent-primary) solid; /* Solid border for emphasis */
+        box-shadow: 0 4px 12px var(--color-box-shadow-hard); /* Stronger shadow for focus */
+        width: 160px;
+        height: 160px;
+        border-radius: 8px; /* Keep square shape with slightly rounded corners */
+        background: var(--color-card-background); /* Add a background for contrast */
+    }
 
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 8px; /* Match the container's slightly rounded corners */
+    }
+
+    .banner-credit {
+        position: absolute;
+        margin-left: 3rem;
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        max-width: 90vw;
+        z-index: 3;
+        text-align: left;
+    }
+
+    .banner-credit a {
+        color: var(--color-accent-primary);
+        text-decoration: underline;
+        transition: color 0.3s ease, text-decoration-thickness 0.3s ease;
+    }
+
+    .banner-credit a:hover {
+        color: var(--color-text-link-hover);
+        text-decoration-thickness: 2px;
+    }
+
+    .content {
+        padding: 2rem;
+        margin: 2rem auto; /* Add spacing above and below */
+        width: 90%;
+        max-width: 1200px; /* Limit the width for better readability */
+        box-shadow: -4px 0 12px var(--color-box-shadow-soft), 4px 0 12px var(--color-box-shadow-soft), 0 6px 16px var(--color-box-shadow-hard); /* Improved shadow */
+        background-color: var(--color-footer-background);
+        color: var(--color-text-main);
+        text-align: center;
+        border-radius: 12px; /* Add rounding for a polished look */
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+        gap: 1rem; /* Add spacing between the cards */
+        padding: 1rem; /* Optional: Add padding around the grid */
+        justify-content: center; /* Center the grid */
+        justify-items: center; /* Center the cards in the grid */
+    }
+    
+    .card {
+        background: var(--color-card-background);
+        width: 75%;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px var(--color-box-shadow-soft); /* Subtle shadow for depth */
+        padding: 1.5rem;
+        text-align: left;
+        color: var(--color-text-main);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px); /* Slight lift on hover */
+        box-shadow: 0 8px 16px var(--color-box-shadow-hard); /* Stronger shadow on hover */
+    }
+
+    @media (max-width: 640px) {
         .hero-image {
-            width: 160px; /* Set a fixed width */
-            height: 160px; /* Match height to width to make it square */
-            object-fit: cover; /* Crop the image to fit the square */
-            object-position: center; /* Center the cropped area */
-            background: var(--color-card-background);
-            background-origin: 50%;
-        }
-
-        .banner-credit {
-            position: absolute;
-            margin-left: 3rem;
-            margin-top: .5rem;
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            background: rgba(var(--color-background), 0.1); /* Subtle dark background */
-            box-shadow: 0 2px 8px var(--color-box-shadow);
-            max-width: 90vw;
-            z-index: 3;
-            text-align: left;
-        }
-
-        .banner-credit a {
-            color: var(--color-accent-primary);
-            text-decoration: underline;
-            transition: color .5s, text-decoration-thickness .5s;
-        }
-        .banner-credit a:hover {
-            color: var(--color-text-link-hover);
-            text-decoration-thickness: 2px;
-        }
-
-        .content {
-            padding: 2rem; /* Add padding for space */
-            margin: 0 auto; /* Center the content */
-            width: 90%; /* Set a max width */
-            box-shadow: -6px 0 18px var(--color-box-shadow-hard), 6px 0 18px var(--color-box-shadow-hard), 0 6px 18px var(--color-box-shadow-hard); /* Shadow on left, right, and bottom */
-            background-color: var(--color-footer-background); /* Optional: Different background color */
-            color: var(--color-text-main); /* Optional: Text color */
-            text-align: center; /* Center the text */
+            width: 120px;
+            height: 120px;
         }
 
         .card-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-            gap: 1rem; /* Add spacing between the cards */
-            padding: 1rem; /* Optional: Add padding around the grid */
-            justify-content: center; /* Center the grid */
-            justify-items: center; /* Center the cards in the grid */
+            grid-template-columns: 1fr; /* Single column on smaller screens */
         }
-
-        .card {
-            background: var(--color-card-background); /* Var background for the card */
-            width: 50%;
-            max-height: auto; /* Set a max height */
-            border-radius: 8px; /* Rounded corners for a card-like feel */
-            box-shadow: 0 4px 8px var(--color-box-shadow-soft); /* Subtle shadow for depth */
-            padding: 1.5rem; /* Add padding inside the card */
-            text-align: left; /* Align text to the left */
-            color: var(--color-text-main); /* Dark text color */
-            transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
-            box-shadow: 0 6px 12px var(--color-box-shadow-hard); /* Stronger shadow on hover */
-        }
-
-        @media (max-width: 640px) { 
-            .hero-image {
-                grid-template-columns: 1fr; /* Switch to a single column on smaller screens */
-                width: 120px; /* Adjust size for smaller screens */
-                height: 120px; /* Keep it square */
-            }
-        }
-    </style>
+    }
+</style>
 </MainLayout>
