@@ -8,7 +8,7 @@ import '../styles/global.css';
 <MainLayout>
     <section class="hero-wrapper">
         <div class="banner"></div>
-            <div class="banner-credit">Credit: <a href="https://svs.gsfc.nasa.gov/13510/#media_group_321209" target="_blank" rel="noopener noreferrer">NASA's Goddard Space Flight Center/Chris Smith (USRA)</a>
+            <div class="banner-credit"><b>Credit</b>: <a href="https://svs.gsfc.nasa.gov/13510/#media_group_321209" target="_blank" rel="noopener noreferrer">NASA's Goddard Space Flight Center/Chris Smith (USRA)</a>
             </div>
         <Image src={HeroImage} class="image-container" alt="Placeholder" loading="eager" />
         </section>
@@ -16,16 +16,20 @@ import '../styles/global.css';
     <section class="content">
         <div class="card-grid">
             <div class="card">
-                <h2>Welcome to My Portfolio</h2>
-                <p>Explore my projects and learn more about me.</p>
+                <h2>Who are you?</h2>
+                <p>&nbsp&nbsp&nbsp&nbsp<b>I'm Ronan — a multidisciplinary developer and designer.</b> </br>I specialize in immersive digital experiences that mege function, storytelling, and aesthetic impact. My work bridges systems and emotion–shaped through clean code, visual atmosphere, and percision.</p>
             </div>
             <div class="card">
-                <h2>Projects</h2>
-                <p>Check out my latest work and contributions.</p>
+                <h2>What do you do?</h2>
+                <p>&nbsp&nbsp&nbsp&nbsp<b>I build and design systems spanning: </b></br>- General Software Development: Writing scalable, clean code for web, game, and local–first aplications.</br>- Front-end Engineering: TypeScript, Astro, React, and responsive design.</br>- UI/UX Design: Interfaces that are intuitive, adaptive, and visually aligned to narative.</br>- Creative Tech: Blender animation, shader programming, and procedural content systems.</p>
             </div>
             <div class="card">
-                <h2>About Me</h2>
-                <p>Learn more about my background and skills.</p>
+                <h2>What makes your work distinct?</h2>
+                <p>&nbsp&nbsp&nbsp&nbsp<b>Cohesion between code and experience.</b></br>I devlop like an engineer and design like a director—ensuring that every function, frame, and flow serves a narrative purpose. I focus on structure, emotional continuity, and technical efficiency.</p>
+            </div>
+            <div class="card">
+                <h2>What technologies and tools do you use?</h2>
+                <p>&nbsp&nbsp&nbsp&nbsp<b>Primary Stack:</b></br>- TypeScript, Astro, React, Node</br>- Tailwind, SCSS, CSS Modules</br>- Blender, Krita, Affinity Designer</br>- Git, Figma, WebGL/Canvas</br>I prioritize tools that allow for precision, speed, and scalability across visual and functional domains.</p>
             </div>
         </div>
     </section>
@@ -51,6 +55,7 @@ import '../styles/global.css';
             display: block;
             width: 90%; /* Ensure the banner spans the full width */
             height: 400px; /* Fixed height for consistency */
+            box-shadow: -6px 0 18px var(--color-box-shadow-soft), 6px 0 18px var(--color-box-shadow-hard); /* Shadow only on left and right */
             background-image: url('/src/assets/Wolftopia_Banner.png');
             background-size: cover; /* Ensure the image covers the banner */
             background-position: center;
@@ -78,7 +83,6 @@ import '../styles/global.css';
             height: 160px; /* Match height to width to make it square */
             object-fit: cover; /* Crop the image to fit the square */
             object-position: center; /* Center the cropped area */
-            box-shadow: 0 6px 18px var(--color-box-shadow-soft); /* Soft shadow for depth */
             background: var(--color-card-background);
             background-origin: 50%;
         }
@@ -111,6 +115,7 @@ import '../styles/global.css';
             padding: 2rem; /* Add padding for space */
             margin: 0 auto; /* Center the content */
             width: 90%; /* Set a max width */
+            box-shadow: -6px 0 18px var(--color-box-shadow-hard), 6px 0 18px var(--color-box-shadow-hard), 0 6px 18px var(--color-box-shadow-hard); /* Shadow on left, right, and bottom */
             background-color: var(--color-footer-background); /* Optional: Different background color */
             color: var(--color-text-main); /* Optional: Text color */
             text-align: center; /* Center the text */
@@ -128,6 +133,7 @@ import '../styles/global.css';
         .card {
             background: var(--color-card-background); /* Var background for the card */
             width: 50%;
+            max-height: auto; /* Set a max height */
             border-radius: 8px; /* Rounded corners for a card-like feel */
             box-shadow: 0 4px 8px var(--color-box-shadow-soft); /* Subtle shadow for depth */
             padding: 1.5rem; /* Add padding inside the card */

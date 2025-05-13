@@ -1,0 +1,39 @@
+<footer class="footer">
+    <p>&copy; 2025 Ronan Ludvigsen. All rights reserved.</p>
+    <ul class="footer-links">
+        <li><a href="/portfolio/">Home</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/about/">About Me</a></li>
+    </ul>
+</footer>
+
+<style scoped>
+    .footer {
+        background-color: var(--color-navbar); /* Match the navbar background */
+        color: var(--color-text-main);
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        box-shadow: 0 -4px 8px var(--color-box-shadow-soft); /* Shadow on top */
+    }
+
+    .footer-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links a {
+        color: var(--color-accent-primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+        color: var(--color-accent-secondary);
+    }
+</style>
