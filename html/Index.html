@@ -48,24 +48,6 @@ body {
   overflow-x: hidden;
 }
 
-/* CRT scanlines */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0,0,0,0.08),
-    rgba(0,0,0,0.08) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  pointer-events: none;
-  z-index: 1000;
-  animation: flicker 0.2s infinite;
-}
-
 /* Noise overlay */
 body::after {
   content: '';
@@ -253,25 +235,6 @@ p { font-size:0.9em; line-height:1.6; margin:10px 0; }
 </head>
 <body>
 
-<!-- System Navigation Header -->
-<div class="system-header">
-  <div class="header-left">
-    <span class="header-logo">SYSTEM://</span>
-    <a href="index.html" class="header-item">Home</a>
-    <span class="header-divider">/</span>
-    <a href="projects.html" class="header-item">Projects</a>
-    <span class="header-divider">/</span>
-    <a href="contact.html" class="header-item">Contact</a>
-  </div>
-  <div class="header-right">
-    <span class="header-item"><span class="status-dot"></span>Connected</span>
-    <span class="header-divider">/</span>
-    <span class="header-item" id="systemTime">SYSTEM.TIME: --:--:--</span>
-    <span class="header-divider">/</span>
-    <span class="header-item">ID: LlamaMaster33</span>
-  </div>
-</div>
-
 <div class="content-wrapper">
   <!-- Header Card -->
   <div class="card header-card">
@@ -313,7 +276,7 @@ p { font-size:0.9em; line-height:1.6; margin:10px 0; }
 
   <!-- Footer -->
   <div class="system-footer">
-    <p>© 2025 Ronan Ludvigsen</p>
+    <p>C 2025 Ronan Ludvigsen</p>
     <p class="connection-status">[ CONNECTION ESTABLISHED // PRESENT DAY... PRESENT TIME... ]</p>
   </div>
 </div>
@@ -329,6 +292,5 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 </script>
-<div class="crt-line"></div>
 </body>
 </html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Projects - LlamaMaster33</title>
+<script>
+function updateTime() {
+  var now = new Date();
+  var hours = String(now.getHours()).padStart(2, '0');
+  var minutes = String(now.getMinutes()).padStart(2, '0');
+  var seconds = String(now.getSeconds()).padStart(2, '0');
+  var timeEl = document.getElementById('systemTime');
+  if(timeEl) {
+    timeEl.textContent = 'SYSTEM.TIME: ' + hours + ':' + minutes + ':' + seconds;
+  }
+}
+</script>
+<style>
+/* Tokyo Night Color Palette */
+:root {
+  --bg-dark: #1a1b26;
+  --bg-medium: #24283b;
+  --bg-light: #414868;
+  --fg: #c0caf5;
+  --blue: #7aa2f7;
+  --cyan: #7dcfff;
+  --purple: #bb9af7;
+  --red: #f7768e;
+  --yellow: #e0af68;
+  --green: #9ece6a;
+  --comment: #9aa5ce;
+  --border: #414868;
+}
+
+/* Animations */
+@keyframes blink {0%,49%{opacity:1;}50%,100%{opacity:0;}}
+@keyframes pulse {0%,100%{opacity:1;}50%{opacity:0.5;}}
+@keyframes slideIn {from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes crt-scan {0%{top:-100%;}100%{top:100%;}}
+@keyframes glitchWord {
+  0%,90%{text-shadow:none;transform:translate(0);}
+  91%{text-shadow:2px 0 var(--red),-2px 0 var(--cyan);transform:translate(-2px,0);}
+  92%{text-shadow:-2px 0 var(--red),2px 0 var(--cyan);transform:translate(2px,0);}
+  93%,100%{text-shadow:none;transform:translate(0);}
+}
+
+/* Base */
+* {box-sizing:border-box;}
+body {
+  background-color:var(--bg-dark);
+  font-family:monospace;
+  color:var(--fg);
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* CRT scanlines */
+body::before {
+  content:'';
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,0.08),rgba(0,0,0,0.08) 1px,transparent 1px,transparent 3px);
+  pointer-events:none;
+  z-index:1000;
+}
+
+/* Sliding CRT line */
+.crt-line {
+  position:fixed;
+  left:0;
+  width:100%;
+  height:3%;
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0) 100%);
+  animation:crt-scan 6s linear infinite;
+  pointer-events:none;
+  z-index:1200;
+  mix-blend-mode:screen;
+}
+
+/* System Navigation Header */
+.system-header {
+  background:var(--bg-dark);
+  border-bottom:2px solid var(--purple);
+  color:var(--cyan);
+  font-size:11px;
+  padding:12px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  box-shadow:0 2px 10px rgba(187,154,247,0.2);
+  min-height:45px;
+}
+.header-left, .header-right {
+  display:flex;
+  gap:20px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.header-item {color:var(--cyan); text-decoration:none; transition:color 0.3s;}
+.header-item:hover, .header-item:focus {color:var(--purple); outline:none;}
+.header-divider {color:var(--comment); opacity:0.5;}
+.header-logo {font-size:16px; font-weight:bold; color:var(--purple); margin-right:20px;}
+.status-dot {
+  display:inline-block;
+  width:6px; height:6px;
+  background:var(--green);
+  border-radius:50%;
+  animation:pulse 2s infinite;
+  margin-right:4px;
+}
+
+/* Content */
+.content-wrapper {display:flex; flex-direction:column; align-items:center; padding:20px 10px;}
+
+/* Cards */
+.card {
+  background:var(--bg-medium);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:20px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+  margin:20px 0;
+  width:90%;
+  max-width:1200px;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  animation:slideIn 0.5s ease-out;
+  position:relative;
+  border-top:3px solid var(--purple);
+}
+.card:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 16px rgba(187,154,247,0.3);
+  border-color:var(--purple);
+}
+.card-label {
+  position:absolute;
+  top:-20px; left:10px;
+  font-size:10px;
+  color:var(--purple);
+  opacity:0.7;
+}
+
+/* Header Card */
+.header-card {text-align:center;}
+.header-card h1 {color:var(--blue); font-size:2em; margin:15px 0 10px 0; letter-spacing:3px;}
+.cursor {color:var(--cyan); animation:blink 1s infinite;}
+.header-card p {color:var(--comment); font-size:0.95em; margin:8px 0; line-height:1.6;}
+.glitch {display:inline-block; animation:glitchWord 8s infinite;}
+
+/* Section Headers */
+.section-header {color:var(--blue); font-size:1.2em; margin-bottom:15px; padding-left:20px; position:relative;}
+.section-header::before {content:'//'; position:absolute; left:0; color:var(--green);}
+
+/* Project Grid */
+.project-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:20px;
+  margin-top:20px;
+}
+.project-card {
+  background:var(--bg-light);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:20px;
+  border-left:4px solid var(--cyan);
+  transition:all 0.3s;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.project-card:hover {
+  border-left-color:var(--purple);
+  transform:translateY(-4px);
+  box-shadow:0 6px 20px rgba(187,154,247,0.3);
+}
+.project-title {
+  color:var(--cyan);
+  font-size:1.1em;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+.project-title::before {
+  content:'> ';
+  color:var(--green);
+}
+.project-desc {
+  color:var(--fg);
+  font-size:0.9em;
+  line-height:1.6;
+  flex-grow:1;
+}
+.project-tech {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:8px;
+}
+.tech-tag {
+  background:var(--bg-dark);
+  color:var(--yellow);
+  font-size:0.75em;
+  padding:4px 8px;
+  border-radius:4px;
+  border:1px solid var(--border);
+}
+.project-links {
+  display:flex;
+  gap:12px;
+  margin-top:8px;
+}
+.project-link {
+  color:var(--purple);
+  text-decoration:none;
+  font-size:0.85em;
+  border-bottom:1px dashed var(--purple);
+  transition:all 0.3s;
+}
+.project-link:hover {
+  color:var(--cyan);
+  border-bottom-color:var(--cyan);
+}
+.project-year {
+  color:var(--comment);
+  font-size:0.8em;
+  margin-top:auto;
+}
+
+/* Footer */
+.system-footer {text-align:center; margin:30px 0 20px 0; color:var(--comment); font-size:0.75em; border-top:1px solid var(--border); padding-top:20px; width:90%; max-width:1200px;}
+.connection-status {font-size:0.7em; color:var(--cyan); margin-top:8px;}
+strong {color:var(--cyan); font-weight:normal;}
+p {font-size:0.9em; line-height:1.6; margin:10px 0;}
+
+/* Responsive */
+@media (max-width:768px) {
+  .system-header {font-size:9px; padding:6px 10px;}
+  .header-left,.header-right {gap:10px;}
+  .header-card h1 {font-size:1.5em; letter-spacing:2px;}
+  .project-grid {grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="content-wrapper">
+  <!-- Header Card -->
+  <div class="card header-card">
+    <span class="card-label">[SYSTEM.PROJECTS.LOAD]</span>
+    <h1>Project <span class="glitch">Archive</span><span class="cursor">_</span></h1>
+    <p>A collection of my work in robotics, web development, and systems programming</p>
+  </div>
+
+  <!-- FRC Projects -->
+  <div class="card">
+    <span class="card-label">[NETWORK.ROBOTICS.FRC]</span>
+    <h2 class="section-header">FIRST Robotics Competition</h2>
+    <p style="margin-bottom:15px;">Scouting and data analysis systems for Team 2338 Gear It Forward</p>
+    
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-title">GearScout Collection 2025</div>
+        <div class="project-desc">
+          Latest iteration of the team's scouting data collection system. Modern web-based interface for efficient match data recording and real-time analytics during competitions.
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Web App</span>
+          <span class="tech-tag">Real-time</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Team2338/GearScoutCollection2025" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">QualScout</div>
+        <div class="project-desc">
+          Qualification match scouting system designed for rapid data entry and team performance tracking. Streamlined interface for scouts to record match data efficiently.
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Data Analysis</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Team2338/QualScout" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <div class="project-year">2024-2025</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">GearScout 2024</div>
+        <div class="project-desc">
+          Comprehensive scouting platform for the 2024 FRC season. Features advanced data visualization, team comparison tools, and match prediction algorithms.
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Analytics</span>
+          <span class="tech-tag">Visualization</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Team2338/GearScout2024" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <div class="project-year">2024</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">GearScout 2023</div>
+        <div class="project-desc">
+          Initial version of the GearScout system. Foundation for future iterations, establishing core data collection patterns and analysis methodologies.
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Web Development</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Team2338/GearScout2023" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <div class="project-year">2023</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Team Website</div>
+        <div class="project-desc">
+          Official website for FRC Team 2338 Gear It Forward. Showcases team history, sponsors, and accomplishments. Built with modern web technologies.
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">Web Design</span>
+          <span class="tech-tag">Frontend</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Team2338/website" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Other Projects -->
+  <div class="card">
+    <span class="card-label">[SYSTEM.PROJECTS.OTHER]</span>
+    <h2 class="section-header">Systems & Development</h2>
+    
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-title">Sentinel FinOps</div>
+        <div class="project-desc">
+          Stock tracking and analysis system that monitors user-specified stocks and provides buy/sell/hold recommendations based on technical analysis and market indicators.
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Stock Analysis</span>
+          <span class="tech-tag">Automation</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/LlamaMaster33/sentinel-finops" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <div class="project-year">2024-2025</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">Portfolio Website</div>
+        <div class="project-desc">
+          Personal portfolio site featuring Tokyo Night theme with Serial Experiments Lain and analog horror aesthetics. Built to be converted to Brainfuck as a programming challenge.
+        </div>
+        <div class="project-tech">
+          <span class="tech-tag">HTML/CSS</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Brainfuck</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/LlamaMaster33/portfolio" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="system-footer">
+    <p>C 2025 Ronan Ludvigsen</p>
+    <p class="connection-status">[ CONNECTION ESTABLISHED // PRESENT DAY... PRESENT TIME... ]</p>
+  </div>
+</div>
+
+<script>
+if(typeof updateTime === 'function') {
+  updateTime();
+  setInterval(updateTime, 1000);
+}
+</script>
+</body>
+</html>

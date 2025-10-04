@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Commissions - LlamaMaster33</title>
+<style>
+/* Tokyo Night Color Palette */
+:root {
+  --bg-dark: #1a1b26;
+  --bg-medium: #24283b;
+  --bg-light: #414868;
+  --fg: #c0caf5;
+  --blue: #7aa2f7;
+  --cyan: #7dcfff;
+  --purple: #bb9af7;
+  --red: #f7768e;
+  --yellow: #e0af68;
+  --green: #9ece6a;
+  --comment: #9aa5ce;
+  --border: #414868;
+}
+
+/* Animations */
+@keyframes blink {0%,49%{opacity:1;}50%,100%{opacity:0;}}
+@keyframes pulse {0%,100%{opacity:1;}50%{opacity:0.5;}}
+@keyframes slideIn {from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes crt-scan {0%{top:-100%;}100%{top:100%;}}
+
+/* Base */
+* {box-sizing:border-box;}
+body {
+  background-color:var(--bg-dark);
+  font-family:monospace;
+  color:var(--fg);
+  margin:0;
+  padding:0;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+
+/* CRT scanlines */
+body::before {
+  content:'';
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,0.08),rgba(0,0,0,0.08) 1px,transparent 1px,transparent 3px);
+  pointer-events:none;
+  z-index:1000;
+}
+
+/* Sliding CRT line */
+.crt-line {
+  position:fixed;
+  left:0;
+  width:100%;
+  height:3%;
+  background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0.08) 50%,rgba(255,255,255,0) 100%);
+  animation:crt-scan 6s linear infinite;
+  pointer-events:none;
+  z-index:1200;
+  mix-blend-mode:screen;
+}
+
+/* System Navigation Header */
+.system-header {
+  background:var(--bg-dark);
+  border-bottom:2px solid var(--purple);
+  color:var(--cyan);
+  font-size:11px;
+  padding:12px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  box-shadow:0 2px 10px rgba(187,154,247,0.2);
+  min-height:45px;
+}
+.header-left, .header-right {
+  display:flex;
+  gap:20px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.header-item {color:var(--cyan); text-decoration:none; transition:color 0.3s;}
+.header-item:hover, .header-item:focus {color:var(--purple); outline:none;}
+.header-divider {color:var(--comment); opacity:0.5;}
+.header-logo {font-size:16px; font-weight:bold; color:var(--purple); margin-right:20px;}
+.status-dot {
+  display:inline-block;
+  width:6px; height:6px;
+  background:var(--green);
+  border-radius:50%;
+  animation:pulse 2s infinite;
+  margin-right:4px;
+}
+
+/* Content */
+.content-wrapper {display:flex; flex-direction:column; align-items:center; padding:20px 10px;}
+
+/* Cards */
+.card {
+  background:var(--bg-medium);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:20px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.5);
+  margin:20px 0;
+  width:90%;
+  max-width:1200px;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  animation:slideIn 0.5s ease-out;
+  position:relative;
+  border-top:3px solid var(--purple);
+}
+.card:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 16px rgba(187,154,247,0.3);
+  border-color:var(--purple);
+}
+.card-label {
+  position:absolute;
+  top:-20px; left:10px;
+  font-size:10px;
+  color:var(--purple);
+  opacity:0.7;
+}
+
+/* Header Card */
+.header-card {text-align:center;}
+.header-card h1 {color:var(--blue); font-size:2em; margin:15px 0 10px 0; letter-spacing:3px;}
+.cursor {color:var(--cyan); animation:blink 1s infinite;}
+.header-card p {color:var(--comment); font-size:0.95em; margin:8px 0; line-height:1.6;}
+
+/* Section Headers */
+.section-header {color:var(--blue); font-size:1.2em; margin-bottom:15px; padding-left:20px; position:relative;}
+.section-header::before {content:'//'; position:absolute; left:0; color:var(--green);}
+
+/* Service Grid */
+.service-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:20px;
+  margin-top:20px;
+}
+.service-card {
+  background:var(--bg-light);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:20px;
+  border-left:4px solid var(--cyan);
+  transition:border-color 0.3s, transform 0.3s;
+}
+.service-card:hover {
+  border-left-color:var(--purple);
+  transform:translateX(5px);
+}
+.service-title {
+  color:var(--cyan);
+  font-size:1.1em;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+.service-title::before {
+  content:'> ';
+  color:var(--green);
+}
+.service-desc {
+  color:var(--fg);
+  font-size:0.9em;
+  line-height:1.6;
+  margin-bottom:10px;
+}
+.service-price {
+  color:var(--yellow);
+  font-size:0.85em;
+  font-style:italic;
+}
+
+/* Contact Methods */
+.contact-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:15px;
+  margin-top:20px;
+}
+.contact-method {
+  background:var(--bg-light);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:15px;
+  text-align:center;
+  transition:border-color 0.3s, box-shadow 0.3s;
+}
+.contact-method:hover {
+  border-color:var(--purple);
+  box-shadow:0 4px 12px rgba(187,154,247,0.2);
+}
+.contact-icon {
+  font-size:2em;
+  color:var(--purple);
+  margin-bottom:10px;
+}
+.contact-label {
+  color:var(--cyan);
+  font-size:0.9em;
+  margin-bottom:5px;
+}
+.contact-value {
+  color:var(--fg);
+  font-size:0.85em;
+  word-break:break-all;
+}
+.contact-link {
+  color:var(--purple);
+  text-decoration:none;
+  border-bottom:1px dashed var(--purple);
+}
+.contact-link:hover {
+  color:var(--cyan);
+  border-bottom-color:var(--cyan);
+}
+
+/* Info Box */
+.info-box {
+  background:rgba(187,154,247,0.1);
+  border:1px solid var(--purple);
+  border-radius:8px;
+  padding:15px;
+  margin-top:20px;
+}
+.info-box::before {
+  content:'ℹ INFO: ';
+  color:var(--purple);
+  font-weight:bold;
+}
+
+/* Warning Box */
+.warning-box {
+  background:rgba(247,118,142,0.05);
+  border:1px dashed var(--red);
+  border-radius:8px;
+  padding:15px;
+  margin-top:20px;
+  text-align:center;
+}
+.warning-box::before {
+  content:'⚠ NOTE: ';
+  color:var(--red);
+  font-weight:bold;
+}
+
+/* Footer */
+.system-footer {text-align:center; margin:30px 0 20px 0; color:var(--comment); font-size:0.75em; border-top:1px solid var(--border); padding-top:20px; width:90%; max-width:1200px;}
+.connection-status {font-size:0.7em; color:var(--cyan); margin-top:8px;}
+strong {color:var(--cyan); font-weight:normal;}
+p {font-size:0.9em; line-height:1.6; margin:10px 0;}
+ul {font-size:0.9em; list-style:none; padding:0; margin:15px 0;}
+ul li {padding:3px 0; padding-left:20px; position:relative; color:var(--fg);}
+ul li::before {content:'→'; position:absolute; left:0; color:var(--cyan);}
+
+/* Responsive */
+@media (max-width:768px) {
+  .system-header {font-size:9px; padding:6px 10px;}
+  .header-left,.header-right {gap:10px;}
+  .header-card h1 {font-size:1.5em; letter-spacing:2px;}
+  .service-grid, .contact-grid {grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="content-wrapper">
+  <!-- Header Card -->
+  <div class="card header-card">
+    <span class="card-label">[SYSTEM.SERVICES.INIT]</span>
+    <h1>Commission Services<span class="cursor">_</span></h1>
+    <p>Custom PC builds, keyboard assemblies, and hardware consultation services</p>
+  </div>
+
+  <!-- Services Offered -->
+  <div class="card">
+    <span class="card-label">[NETWORK.SERVICES.LIST]</span>
+    <h2 class="section-header">Available Services</h2>
+    
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-title">Custom PC Builds</div>
+        <div class="service-desc">
+          Full custom PC assembly with component selection, cable management, and testing. Optimized for gaming, workstation, or general use based on your needs and budget.
+        </div>
+        <div class="service-price">Starting at $XXX + parts cost</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-title">Custom Mechanical Keyboards</div>
+        <div class="service-desc">
+          Hand-built mechanical keyboards with your choice of switches, keycaps, and layout. Includes assembly, lubing, and tuning for optimal feel and sound.
+        </div>
+        <div class="service-price">Starting at $XXX + parts cost</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-title">PC Upgrades & Maintenance</div>
+        <div class="service-desc">
+          Component upgrades, cleaning, thermal paste replacement, and performance optimization. Get your system running like new.
+        </div>
+        <div class="service-price">Starting at $XX per service</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-title">Hardware Consultation</div>
+        <div class="service-desc">
+          Expert advice on component selection, compatibility checks, and build planning. Perfect if you want to build yourself but need guidance.
+        </div>
+        <div class="service-price">$XX per consultation</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-title">Keyboard Modifications</div>
+        <div class="service-desc">
+          Switch lubing, stabilizer tuning, foam modding, and other improvements to enhance your existing keyboard.
+        </div>
+        <div class="service-price">Starting at $XX</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-title">Cable Management</div>
+        <div class="service-desc">
+          Professional cable management for existing builds. Includes custom sleeving options and routing optimization.
+        </div>
+        <div class="service-price">Starting at $XX</div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      All prices are negotiable based on project scope and complexity. Contact me for a personalized quote!
+    </div>
+  </div>
+
+  <!-- Process -->
+  <div class="card">
+    <span class="card-label">[SYSTEM.WORKFLOW.DOC]</span>
+    <h2 class="section-header">Commission Process</h2>
+    <ul>
+      <li>Initial consultation to discuss your requirements and budget</li>
+      <li>Component selection and compatibility verification</li>
+      <li>Quote approval and timeline agreement</li>
+      <li>Parts ordering (you can provide parts or I can source them)</li>
+      <li>Assembly, testing, and quality assurance</li>
+      <li>Delivery with documentation and setup assistance</li>
+    </ul>
+
+    <div class="warning-box">
+      Lead times vary based on parts availability and current workload. Contact me for current turnaround estimates.
+    </div>
+  </div>
+
+  <!-- Contact Methods -->
+<div class="card">
+  <span class="card-label">[NETWORK.CONTACT.INF]</span>
+  <h2 class="section-header">Get In Touch</h2>
+  <p>Ready to start your project? All contact info and channels are available on the <a href="contact.html" class="contact-link">Contact Page</a>.</p>
+
+  <div class="info-box" style="margin-top:30px;">
+    Please visit the Contact Page to include details about your project, budget range, and timeline. This helps me provide an accurate quote faster!
+  </div>
+</div>
+  <!-- Footer -->
+  <div class="system-footer">
+    <p>C 2025 Ronan Ludvigsen</p>
+    <p class="connection-status">[ CONNECTION ESTABLISHED // PRESENT DAY... PRESENT TIME... ]</p>
+  </div>
+</div>
+
+<script>
+function updateTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('systemTime').textContent = 'SYSTEM.TIME: ' + hours + ':' + minutes + ':' + seconds;
+}
+updateTime();
+setInterval(updateTime, 1000);
+</script>
+</body>
+</html>
