@@ -444,11 +444,22 @@ p {font-size:0.9em; line-height:1.6; margin:10px 0;}
     <span class="card-label">[NETWORK.SOCIAL.LINKS]</span>
     <h2 class="section-header">Other Platforms</h2>
     <div style="text-align:center; margin-bottom:20px;">
-      <img src="/portfolio/images/emblem.png" alt="Network Emblem" style="max-width:400px; height:auto; opacity:0.85; margin-bottom:15px;" onerror="this.onerror=null; this.src='images/emblem.png';">
+      <img id="emblemImage" src="images/emblem.png" alt="Network Emblem" style="max-width:400px; height:auto; opacity:0.85; margin-bottom:15px;">
       <p style="color:var(--comment); margin:0;">
         Find me across the <span class="glitch">network</span>
       </p>
     </div>
+    <script>
+    (function() {
+      var img = document.getElementById('emblemImage');
+      if (img) {
+        // Try to detect if we're on GitHub Pages
+        if (window.location.hostname.includes('github.io')) {
+          img.src = '/portfolio/images/emblem.png';
+        }
+      }
+    })();
+    </script>
     
     <div class="social-links">
       <a href="https://bsky.app/profile/llamamaster33.bsky.social" class="social-btn">BlueSky</a>
