@@ -334,9 +334,12 @@ function bootSequence() {
         mainContent.style.transition = 'opacity 0.5s';
         mainContent.style.opacity = '1';
         bootComplete = true;
-        }, 800);
-      }
+        
+        // Load main page immediately after boot completes
+        loadPage("main");
+      }, 800);
     }
+  }
 
   addLine();
 }
