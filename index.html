@@ -330,16 +330,13 @@ function bootSequence() {
       setTimeout(() => {
         bootScreen.classList.add('hidden');
         mainHeader.style.transition = 'opacity 0.5s';
-        mainContent.style.transition = 'opacity 0.5s';
         mainHeader.style.opacity = '1';
+        mainContent.style.transition = 'opacity 0.5s';
         mainContent.style.opacity = '1';
         bootComplete = true;
-        setTimeout(() => {
-          bootScreen.style.display = 'none';
         }, 800);
-      }, 400);
+      }
     }
-  }
 
   addLine();
 }

@@ -24,7 +24,7 @@ function revealEmail() {
 }
 
 function revealDiscord() {
-  var username = 'llamamster33';
+  var username = 'llamamaster33';
   var handle = document.getElementById('discordHandle');
   var btn = document.getElementById('discordBtn');
   handle.innerHTML = '<a href="https://discord.com/users/' + username + '" class="contact-link" target="_blank">@' + username + '</a>';
@@ -454,10 +454,10 @@ p {font-size:0.9em; line-height:1.6; margin:10px 0;}
       var img = document.getElementById('emblemImage');
       if (img) {
         // Try to detect if we're on GitHub Pages
-        if (window.location.hostname.includes('github.io')) {
-          img.src = '/portfolio/images/emblem.png';
-        }
+        var testImg = new Image();
+        img.src = 'images/emblem.png';
       }
+      testImg.src = img.src;
     })();
     </script>
     

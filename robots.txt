@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://llamamaster33.github.io/portfolio/sitemap.xml
+
+# Disallow unnecessary files
+Disallow: /bf/
+Disallow: /html/
+Disallow: /converter.py
+Disallow: /interpreter.js
