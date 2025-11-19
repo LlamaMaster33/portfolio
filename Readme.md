@@ -17,7 +17,7 @@ A unique portfolio website with a Serial Experiments Lain aesthetic, featuring a
    ```bash
    python converter.py
    ```
-3. Open `systembrain.html` in your browser
+3. Open `index.html` in your browser
 
 ## Structure
 - `html/` - Original HTML content files

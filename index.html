@@ -11,6 +11,12 @@
 <meta property="og:description" content="Portfolio showcasing projects in robotics, web development, and systems programming">
 <meta property="og:image" content="https://github.com/LlamaMaster33.png">
 <meta property="og:url" content="https://llamamaster33.github.io/portfolio/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LlamaMaster33 - System Portfolio">
+<meta name="twitter:description" content="Portfolio showcasing projects in robotics, web development, and systems programming">
+<meta name="twitter:image" content="https://github.com/LlamaMaster33.png">
+<meta name="theme-color" content="#1a1b26">
+<link rel="canonical" href="https://llamamaster33.github.io/portfolio/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="interpreter.js"></script>
 <style>
@@ -146,6 +152,17 @@ body.light-mode::before {
 }
 @keyframes crt-scan {0% { top: -100%; } 100% { top: 100%; }}
 
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .crt-line { display: none; }
+  body::before { animation: none; }
+}
+
 /* Page transition */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -252,26 +269,26 @@ body::after {
 </div>
 
 <!-- Loading Overlay -->
-<div class="loading-overlay" id="loadingOverlay">
-  <span>LOADING<span style="animation: blink 1s infinite;">_</span></span>
+<div class="loading-overlay" id="loadingOverlay" role="status" aria-live="polite">
+  <span>LOADING<span style="animation: blink 1s infinite;" aria-hidden="true">_</span></span>
 </div>
 
 <!-- Theme Toggle -->
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-  <span id="themeIcon">☀</span> Toggle Theme
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle between light and dark theme">
+  <span id="themeIcon" aria-hidden="true">☀</span> Toggle Theme
 </button>
 
 <!-- System Header -->
-<div class="system-header" style="opacity: 0;" id="mainHeader">
+<div class="system-header" style="opacity: 0;" id="mainHeader" role="navigation" aria-label="Main navigation">
   <div class="header-left">
-    <span class="header-logo">SYSTEM://</span>
-    <a href="#" class="header-item" onclick="loadPage('main'); return false;" data-page="main">Home</a>
-    <span class="header-divider">/</span>
-    <a href="#" class="header-item" onclick="loadPage('projects'); return false;" data-page="projects">Projects</a>
-    <span class="header-divider">/</span>
-    <a href="#" class="header-item" onclick="loadPage('commissions'); return false;" data-page="commissions">Commissions</a>
-    <span class="header-divider">/</span>
-    <a href="#" class="header-item" onclick="loadPage('contact'); return false;" data-page="contact">Contact</a>
+    <span class="header-logo" aria-hidden="true">SYSTEM://</span>
+    <a href="#" class="header-item" onclick="loadPage('main'); return false;" data-page="main" aria-label="Navigate to home page">Home</a>
+    <span class="header-divider" aria-hidden="true">/</span>
+    <a href="#" class="header-item" onclick="loadPage('projects'); return false;" data-page="projects" aria-label="Navigate to projects page">Projects</a>
+    <span class="header-divider" aria-hidden="true">/</span>
+    <a href="#" class="header-item" onclick="loadPage('commissions'); return false;" data-page="commissions" aria-label="Navigate to commissions page">Commissions</a>
+    <span class="header-divider" aria-hidden="true">/</span>
+    <a href="#" class="header-item" onclick="loadPage('contact'); return false;" data-page="contact" aria-label="Navigate to contact page">Contact</a>
   </div>
   <div class="header-right">
     <span class="status-dot"></span> Connected
@@ -284,7 +301,7 @@ body::after {
 
 <!-- BF Output -->
 <div class="content-wrapper" style="opacity: 0;" id="mainContent">
-  <main id="app"></main>
+  <main id="app" role="main" aria-label="Page content"></main>
 </div>
 
 <div class="crt-line"></div>
@@ -303,16 +320,26 @@ const bootMessages = [
 ];
 
 let currentPage = 'main';
-const pages = ['main', 'projects', 'commissions', 'contact' ];
+const pages = ['main', 'projects', 'commissions', 'contact'];
 let bootComplete = false;
+const BOOT_SEEN_KEY = 'bootSequenceSeen';
 
-function bootSequence() {
+function bootSequence(skipAnimation = false) {
   const bootText = document.getElementById('bootText');
   const bootProgress = document.getElementById('bootProgress');
   const bootScreen = document.getElementById('bootScreen');
   const mainHeader = document.getElementById('mainHeader');
   const mainContent = document.getElementById('mainContent');
   let lineIndex = 0;
+
+  if (skipAnimation) {
+    bootScreen.classList.add('hidden');
+    mainHeader.style.opacity = '1';
+    mainContent.style.opacity = '1';
+    bootComplete = true;
+    loadPage('main');
+    return;
+  }
 
   function addLine() {
     if (lineIndex < bootMessages.length) {
@@ -445,18 +472,24 @@ document.addEventListener('keydown', (e) => {
     loadPage(pages[currentIndex + 1]);
   }
   
-  if (e.key >= '1' && e.key <= '5') {
+  if (e.key >= '1' && e.key <= '4') {
     e.preventDefault();
-    loadPage(pages[parseInt(e.key) - 1]);
+    const pageIndex = parseInt(e.key) - 1;
+    if (pageIndex < pages.length) {
+      loadPage(pages[pageIndex]);
+    }
   }
 });
 
 // Start boot sequence
 window.addEventListener('load', () => {
-  bootSequence();
-  setTimeout(() => {
-    loadPage("main");
-  }, 3500);
+  const hasSeenBoot = localStorage.getItem(BOOT_SEEN_KEY);
+  if (hasSeenBoot) {
+    bootSequence(true);
+  } else {
+    localStorage.setItem(BOOT_SEEN_KEY, 'true');
+    bootSequence(false);
+  }
 });
 
 function updateTime(){
@@ -494,7 +527,7 @@ function revealDiscord() {
   var username = 'llamamaster33';
   var handle = document.getElementById('discordHandle');
   var btn = document.getElementById('discordBtn');
-  if(handle) handle.innerHTML = '<a href="https://discord.com/users/' + username + '" class="contact-link" target="_blank">@' + username + '</a>';
+  if(handle) handle.innerHTML = '<a href="https://discord.com/users/' + username + '" class="contact-link" target="_blank" rel="noopener noreferrer">@' + username + '</a>';
   if(btn) {
     btn.style.opacity = '0';
     btn.style.transform = 'translateY(-10px)';
@@ -512,7 +545,7 @@ function revealGithub() {
   var githubUrl = 'https://github.com/' + username;
   var handle = document.getElementById('githubHandle');
   var btn = document.getElementById('githubBtn');
-  if(handle) handle.innerHTML = '<a href="' + githubUrl + '" class="contact-link" target="_blank">@' + username + '</a>';
+  if(handle) handle.innerHTML = '<a href="' + githubUrl + '" class="contact-link" target="_blank" rel="noopener noreferrer">@' + username + '</a>';
   if(btn) {
     btn.style.opacity = '0';
     btn.style.transform = 'translateY(-10px)';
